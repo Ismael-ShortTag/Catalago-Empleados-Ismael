@@ -1,0 +1,167 @@
+﻿@model CatalogoEmpleados.Models.CatalogoViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Lista de Contactos</h2>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="col-12" style="text-align:right">
+                <a data-toggle="modal" href="#modalAgregar" class="btn btn-primary">Agregar <i class="fa-solid fa-user-plus"></i></a></br></br></br></br></br>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Creación</th>
+                        <th>Nombre Completo</th>
+                        <th>RFC</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th style="text-align:center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.dato)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.CreationDate.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Name @item.LastName</td>
+                            <td>@item.RFC</td>
+                            <td>@item.Email</td>
+                            <td>@item.PhoneNumber</td>
+                            <td style="text-align:center">
+                                @if (@item.IsDeleted == false)
+                                {
+                                    <i class="fa-solid fa-ban"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-user-check"></i>
+                                }
+                            </td>
+                            <td><a href="~/Home/Ver/@item.Id" style="text-align:justify-all"><i class="fa-solid fa-circle-info"></i></a></td>
+                            <td><a href="~/Home/Editar/@item.Id" style="text-align:left"><i class="fa-solid fa-square-pen"></i></a></td>
+                            <td><a data-toggle="modal" data-target="#modalEliminar" onclick="mdfEstatus(@item.Id);" style="text-align:center"><i class="fa-solid fa-user-xmark"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"> Agregar nuevo Eempleado</h4>
+                            @using (Html.BeginForm("Guardar", "Home", FormMethod.Post))
+                            {
+                                <div class="modal-body">
+                                    <div class="row" style="padding:15px">
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.Name)<br />
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:100%", @placeholder = "Nombre del Empleado" })<br />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.LastName)<br />
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:100%", @placeholder = "Apellidos del Empleado" })<br />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.Birthday)<br />
+                                                @Html.EditorFor(m => m.Birthday, new { type = "date" })<br />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.RFC)<br />
+                                                @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:100%", @placeholder = "RFC del Empleado" })<br />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.Email)<br />
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:100%", @placeholder = "Email del Empleado" })<br />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class"col-12">
+                                                @Html.LabelFor(m => m.PhoneNumber)<br />
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:100%", @placeholder = "Telefono del Empleado" })<br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class"col-12">
+
+                                            @Html.AntiForgeryToken();
+                                            @Html.LabelFor(m => m.NamePuesto)<br />
+                                            @Html.DropDownListFor(Model => Model.IdPosicion, new SelectList(Model.puestos, "Id", "Name"))<br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"> Eliminar / Activar Empleado</h4>
+                            @using (Html.BeginForm("CambioEstatus", "Home", FormMethod.Post))
+                            {
+                                <div class"col-12">
+                                    @Html.Label("Esta seguro de Eliminar/Activa al Empleado con la Id:")<br />
+                                    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", style = "max-width:100%" }) <br />
+                                    <div class="row" style="display:none">
+                                        <div class"col-12">
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:100%" }) <br />
+                                            @Html.TextBoxFor(m => m.LastName) <br />
+                                            @Html.TextBoxFor(m => m.RFC) <br />
+                                            @Html.TextBoxFor(m => m.Birthday) <br />
+                                            @Html.TextBoxFor(m => m.CreationDate) <br />
+                                            @Html.TextBoxFor(m => m.Email) <br />
+                                            @Html.TextBoxFor(m => m.PositionId) <br />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                //Está Seguro que desea eliminar / activar al empleado con Id:
+                                <div class="row">
+                                    <div class"col-12">
+
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function mdfEstatus(id) {
+                        $('#Id').val(id);
+                    };
+                </script>
+            </div>
+        </div>
+     </div>
+

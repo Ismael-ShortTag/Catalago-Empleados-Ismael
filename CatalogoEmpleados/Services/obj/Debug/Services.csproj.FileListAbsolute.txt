@@ -1,0 +1,15 @@
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\Services.dll.config
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\Services.dll
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\Services.pdb
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\DataProject.dll
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\EntityFramework.dll
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\DataProject.pdb
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\DataProject.dll.config
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\EntityFramework.xml
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\obj\Debug\Services.csproj.CopyComplete
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\obj\Debug\Services.dll
+C:\Users\PC\Source\Repos\Capacitación sointeco MVC\Services\obj\Debug\Services.pdb
+C:\Users\PC\source\repos\Capacitación sointeco MVC\Services\obj\Debug\Services.csprojAssemblyReference.cache

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_ITSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_ITS.dbo.EmployeesIsmael' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="EmployeesIsmael">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Birhtday" />
+      <PropertyRef Name="RCF" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="PositionId" />
+      <PropertyRef Name="IsDeleted" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Birhtday" Type="datetime" Nullable="false" />
+    <Property Name="RCF" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PositionId" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PositionsIsmael">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_EmployeesIsmael_PositionsIsmael1">
+    <End Role="PositionsIsmael" Type="Self.PositionsIsmael" Multiplicity="1" />
+    <End Role="EmployeesIsmael" Type="Self.EmployeesIsmael" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionsIsmael">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeesIsmael">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_ITSModelStoreContainer">
+    <EntitySet Name="PositionsIsmael" EntityType="Self.PositionsIsmael" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeesIsmael" EntityType="Self.EmployeesIsmael" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmployeesIsmael].[Id] AS [Id], 
+    [EmployeesIsmael].[CreationDate] AS [CreationDate], 
+    [EmployeesIsmael].[Name] AS [Name], 
+    [EmployeesIsmael].[LastName] AS [LastName], 
+    [EmployeesIsmael].[Birhtday] AS [Birhtday], 
+    [EmployeesIsmael].[RCF] AS [RCF], 
+    [EmployeesIsmael].[Email] AS [Email], 
+    [EmployeesIsmael].[PhoneNumber] AS [PhoneNumber], 
+    [EmployeesIsmael].[PositionId] AS [PositionId], 
+    [EmployeesIsmael].[IsDeleted] AS [IsDeleted]
+    FROM [dbo].[EmployeesIsmael] AS [EmployeesIsmael]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_EmployeesIsmael_PositionsIsmael1" Association="Self.FK_EmployeesIsmael_PositionsIsmael1">
+      <End Role="PositionsIsmael" EntitySet="PositionsIsmael" />
+      <End Role="EmployeesIsmael" EntitySet="EmployeesIsmael" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

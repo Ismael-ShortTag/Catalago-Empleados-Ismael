@@ -1,0 +1,82 @@
+﻿@model CatalogoEmpleados.Models.CatalogoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Empleados</h2>
+
+@using (Html.BeginForm("Actualizar", "Home", FormMethod.Post))
+{
+
+    <div class="row" style="padding:15px">
+        <div class="row" style="display:none">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Id)<br />
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control", style = "max-width:100%" }) <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Name)<br />
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:100%", @placeholder = "Nombre del Empleado" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.LastName)<br />
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:100%", @placeholder = "Apellidos del Empleado" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Birthday)<br />
+                @Html.EditorFor(m => m.Birthday, new { @class = "form-control", style = "max-width:100%" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.RFC)<br />
+                @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:100%", @placeholder = "RFC del Empleado" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Email)<br />
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:100%", @placeholder = "Email del Empleado" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.PhoneNumber)<br />
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:100%", @placeholder = "Telefono del Empleado" })<br />
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class"col-12">
+                @Html.LabelFor(m => m.PositionId)<br />
+                @Html.TextBoxFor(m => m.PositionId, new { @class = "form-control", style = "max-width:100%" }) <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.AntiForgeryToken();
+                @Html.LabelFor(m => m.NamePuesto)<br />
+                @Html.DropDownListFor(Model => Model.PositionId, new SelectList(Model.puestos, "Id", "Name"))<br />
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class"col-12">
+                @Html.LabelFor(m => m.CreationDate)<br />
+                @Html.TextBoxFor(m => m.CreationDate, "", new { @class = "form-control", style = "max-width:100%" }) <br />
+            </div>
+        </div>
+
+    </div>
+
+
+    <input type="submit" value="Guardar" class="btn btn-primary" /><br/><br/>
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <button href="~/Home/Index/" class="btn btn-default">Regresar</button>
+}

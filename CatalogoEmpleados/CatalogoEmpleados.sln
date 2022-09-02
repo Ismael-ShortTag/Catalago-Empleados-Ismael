@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogoEmpleados", "CatalogoEmpleados\CatalogoEmpleados.csproj", "{AA72F4F2-8BC7-4688-BD07-5CA5864268AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{67E32B67-2F74-4C4A-A8A1-FB5E45FBE878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{6B7E59D1-B726-484B-9DA1-5D1A8AD65938}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA72F4F2-8BC7-4688-BD07-5CA5864268AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA72F4F2-8BC7-4688-BD07-5CA5864268AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA72F4F2-8BC7-4688-BD07-5CA5864268AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA72F4F2-8BC7-4688-BD07-5CA5864268AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B7E59D1-B726-484B-9DA1-5D1A8AD65938} = {67E32B67-2F74-4C4A-A8A1-FB5E45FBE878}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {227B6468-522B-4982-A5FF-8B617255CEB4}
+	EndGlobalSection
+EndGlobal

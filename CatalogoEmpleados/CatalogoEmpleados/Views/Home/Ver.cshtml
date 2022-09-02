@@ -1,0 +1,83 @@
+﻿@model CatalogoEmpleados.Models.CatalogoViewModel
+@{
+    ViewBag.Title = "Mostrar detalles de los emppleados";
+}
+
+<h2>Ver detalles de empleados</h2>
+
+@using (Html.BeginForm("Ver", "Home", FormMethod.Post))
+{
+
+    <div class="row" style="padding:15px">
+        <div class="row" style="display:none">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Id)<br />
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control", style = "max-width:100%" }) <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Name)<br />
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "max-width:100%", @placeholder = "Nombre del Empleado", disabled = "disabled" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.LastName)<br />
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", style = "max-width:100%", @placeholder = "Apellidos del Empleado", disabled = "disabled" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Birthday)<br />
+                <input type="text" name="fecha" value="@Model.Birthday.ToString("dd-MM-yyyy")" disabled="disabled" />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.RFC)<br />
+                @Html.TextBoxFor(m => m.RFC, new { @class = "form-control", style = "max-width:100%", @placeholder = "RFC del Empleado", disabled = "disabled" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.Email)<br />
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "max-width:100%", @placeholder = "Email del Empleado", disabled = "disabled" })<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.PhoneNumber)<br />
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", style = "max-width:100%", @placeholder = "Telefono del Empleado", disabled = "disabled" })<br />
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class"col-12">
+                @Html.LabelFor(m => m.PositionId)<br />
+                @Html.TextBoxFor(m => m.PositionId, new { @class = "form-control", style = "max-width:100%", disabled = "disabled" }) <br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.AntiForgeryToken();
+                @Html.LabelFor(m => m.puesto)<br />
+                @Html.DropDownListFor(Model => Model.PositionId, new SelectList(Model.puestos, "Id", "Name"))<br />
+            </div>
+        </div>
+        <div class="row">
+            <div class"col-12">
+                @Html.LabelFor(m => m.CreationDate)<br />
+                <input type="text" name="fecha" value="@Model.CreationDate.ToString("dd-MM-yyyy")" disabled="disabled" />
+
+            </div>
+        </div>
+
+    </div>
+}
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <button href="~/Home/Index/" class="btn btn-default">Regresar</button>
+}
+
+
+

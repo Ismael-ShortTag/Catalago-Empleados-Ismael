@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_ITSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DB_ITSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EmployeesIsmael" EntityType="DB_ITSModel.EmployeesIsmael" />
+    <EntitySet Name="PositionsIsmael" EntityType="DB_ITSModel.PositionsIsmael" />
+    <AssociationSet Name="FK_EmployeesIsmael_PositionsIsmael1" Association="DB_ITSModel.FK_EmployeesIsmael_PositionsIsmael1">
+      <End Role="PositionsIsmael" EntitySet="PositionsIsmael" />
+      <End Role="EmployeesIsmael" EntitySet="EmployeesIsmael" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EmployeesIsmael">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RFC" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PositionId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PositionsIsmael" Relationship="DB_ITSModel.FK_EmployeesIsmael_PositionsIsmael1" FromRole="EmployeesIsmael" ToRole="PositionsIsmael" />
+  </EntityType>
+  <EntityType Name="PositionsIsmael">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EmployeesIsmael" Relationship="DB_ITSModel.FK_EmployeesIsmael_PositionsIsmael1" FromRole="PositionsIsmael" ToRole="EmployeesIsmael" />
+  </EntityType>
+  <Association Name="FK_EmployeesIsmael_PositionsIsmael1">
+    <End Type="DB_ITSModel.PositionsIsmael" Role="PositionsIsmael" Multiplicity="1" />
+    <End Type="DB_ITSModel.EmployeesIsmael" Role="EmployeesIsmael" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PositionsIsmael">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeesIsmael">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
